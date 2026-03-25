@@ -417,12 +417,39 @@ function _kullaniciBilgisiOlustur() {
   return parcalar.join('. ') || t('userInfoFallback');
 }
 
+function _encodeRecipe(tarif) {
+  try {
+    const bytes = new TextEncoder().encode(JSON.stringify(tarif));
+    let binary = '';
+    bytes.forEach(b => { binary += String.fromCharCode(b); });
+    return btoa(binary);
+  } catch { return ''; }
+}
+
+function _decodeRecipe(str) {
+  try {
+    const bytes = Uint8Array.from(atob(str), c => c.charCodeAt(0));
+    return JSON.parse(new TextDecoder().decode(bytes));
+  } catch { return null; }
+}
+
+function _deepLinkKontrol() {
+  const hash = window.location.hash;
+  if (!hash.startsWith('#recipe=')) return;
+  const tarif = _decodeRecipe(hash.slice('#recipe='.length));
+  if (!tarif) return;
+  UI.gosterSection('input-panel');
+  UI.detayAc(tarif);
+}
+
 function _paylasGuncelle(tarif) {
   const container = document.getElementById('modal-paylas');
   if (!container) return;
 
   const siteUrl = 'https://ne-pisirsem.vercel.app';
-  const metin = t('paylasMetni', tarif.ad, tarif.aciklama, siteUrl);
+  const recipeHash = _encodeRecipe(tarif);
+  const shareUrl = recipeHash ? `${siteUrl}/#recipe=${recipeHash}` : siteUrl;
+  const metin = t('paylasMetni', tarif.ad, tarif.aciklama, shareUrl);
   const encoded = encodeURIComponent(metin);
 
   container.innerHTML = `
@@ -445,15 +472,15 @@ function _paylasGuncelle(tarif) {
   }
 
   document.getElementById('btn-paylas-kopyala').addEventListener('click', function() {
-    _kopyala(this, siteUrl);
+    _kopyala(this, shareUrl);
   });
 
   document.getElementById('btn-paylas-insta').addEventListener('click', async function() {
     if (navigator.share) {
-      try { await navigator.share({ title: tarif.ad, text: metin, url: siteUrl }); }
+      try { await navigator.share({ title: tarif.ad, text: metin, url: shareUrl }); }
       catch { /* user cancelled */ }
     } else {
-      _kopyala(this, metin);
+      _kopyala(this, shareUrl);
     }
   });
 }
