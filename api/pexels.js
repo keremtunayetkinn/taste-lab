@@ -1,3 +1,14 @@
+const ALLOWED_ORIGINS = [
+  'https://ne-pisirsem.vercel.app',
+  'http://localhost:3000',
+  'http://127.0.0.1:5500'
+];
+
+function isOriginAllowed(req) {
+  const origin = req.headers['origin'] || req.headers['referer'] || '';
+  return ALLOWED_ORIGINS.some(o => origin.startsWith(o));
+}
+
 const ipRequests = new Map();
 function checkRateLimit(ip) {
   const now = Date.now();
@@ -16,6 +27,10 @@ function checkRateLimit(ip) {
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
+  if (!isOriginAllowed(req)) {
+    return res.status(403).json({ url: null });
   }
 
   const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
