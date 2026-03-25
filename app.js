@@ -777,4 +777,7 @@ const Events = {
 // =============================================
 // INIT
 // =============================================
-document.addEventListener('DOMContentLoaded', () => Events.baslat());
+document.addEventListener('DOMContentLoaded', () => {
+  Events.baslat();
+  _deepLinkKontrol();
+});
