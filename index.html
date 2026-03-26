@@ -43,37 +43,37 @@
       <div id="malzeme-listesi" class="tag-listesi"></div>
 
       <div class="filtreler">
-        <fieldset class="filtre-blok">
-          <legend data-i18n="labelSure">Süre</legend>
-          <div class="filter-group" data-kategori="sure">
+        <div class="filtre-blok">
+          <label id="sure-label" data-i18n="labelSure">Süre</label>
+          <div class="filter-group" role="group" aria-labelledby="sure-label" data-kategori="sure">
             <button class="filter-btn" data-deger="15dk" data-i18n="filter15dk">15 dk</button>
             <button class="filter-btn" data-deger="30dk" data-i18n="filter30dk">30 dk</button>
             <button class="filter-btn" data-deger="1saat" data-i18n="filter1saat">1 saat+</button>
           </div>
-        </fieldset>
-        <fieldset class="filtre-blok">
-          <legend data-i18n="labelButce">Bütçe</legend>
-          <div class="filter-group" data-kategori="butce">
+        </div>
+        <div class="filtre-blok">
+          <label id="butce-label" data-i18n="labelButce">Bütçe</label>
+          <div class="filter-group" role="group" aria-labelledby="butce-label" data-kategori="butce">
             <button class="filter-btn" data-deger="ekonomik" data-i18n="filterEkonomik">Ekonomik</button>
             <button class="filter-btn" data-deger="orta" data-i18n="filterOrta">Orta</button>
           </div>
-        </fieldset>
-        <fieldset class="filtre-blok">
-          <legend data-i18n="labelKisi">Kişi Sayısı</legend>
-          <div class="filter-group" data-kategori="kisi">
+        </div>
+        <div class="filtre-blok">
+          <label id="kisi-label" data-i18n="labelKisi">Kişi Sayısı</label>
+          <div class="filter-group" role="group" aria-labelledby="kisi-label" data-kategori="kisi">
             <button class="filter-btn active" data-deger="1" aria-pressed="true" data-i18n="filterKisi1">1 Kişi</button>
             <button class="filter-btn" data-deger="2" data-i18n="filterKisi2">2 Kişi</button>
             <button class="filter-btn" data-deger="4+" data-i18n="filterKisi4">4+ Kişi</button>
           </div>
-        </fieldset>
-        <fieldset class="filtre-blok">
-          <legend data-i18n="labelZorluk">Zorluk</legend>
-          <div class="filter-group" data-kategori="zorluk">
+        </div>
+        <div class="filtre-blok">
+          <label id="zorluk-label" data-i18n="labelZorluk">Zorluk</label>
+          <div class="filter-group" role="group" aria-labelledby="zorluk-label" data-kategori="zorluk">
             <button class="filter-btn" data-deger="kolay" data-i18n="filterKolay">Kolay</button>
             <button class="filter-btn" data-deger="orta" data-i18n="filterOrta">Orta</button>
             <button class="filter-btn" data-deger="zor" data-i18n="filterZor">Zor</button>
           </div>
-        </fieldset>
+        </div>
       </div>
 
       <div id="hata-mesaji" class="hata-mesaji" style="display:none;"></div>
