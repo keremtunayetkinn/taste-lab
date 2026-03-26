@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  if (!isOriginAllowed(req)) {
+  if (!isOriginAllowed(req) || req.headers['x-requested-with'] !== 'XMLHttpRequest') {
     return res.status(403).json({ url: null });
   }
 

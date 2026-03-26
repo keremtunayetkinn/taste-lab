@@ -336,7 +336,7 @@ const API = {
 
     const yanit = await fetch('/api/claude', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
       body: JSON.stringify({ messages: mesajlar, dil: state.dil })
     });
 
@@ -357,7 +357,7 @@ const API = {
     try {
       const yanit = await fetch('/api/pexels', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
         body: JSON.stringify({ arama: pexelsArama })
       });
       const veri = await yanit.json();
