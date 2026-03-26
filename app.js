@@ -463,7 +463,7 @@ function _paylasGuncelle(tarif) {
   const container = document.getElementById('modal-paylas');
   if (!container) return;
 
-  const siteUrl = 'https://taste-lab.vercel.app';
+  const siteUrl = 'https://taste-lab-kerem-tuna-s-projects.vercel.app';
   const recipeHash = _encodeRecipe(tarif);
   const shareUrl = recipeHash ? `${siteUrl}/#recipe=${recipeHash}` : siteUrl;
   const metin = t('paylasMetni', tarif.ad, tarif.aciklama, shareUrl);

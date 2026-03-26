@@ -1,4 +1,5 @@
 {
+  "alias": ["taste-lab-kerem-tuna-s-projects.vercel.app"],
   "functions": {
     "api/claude.js": { "memory": 256, "maxDuration": 30 },
     "api/pexels.js": { "memory": 256, "maxDuration": 10 }
